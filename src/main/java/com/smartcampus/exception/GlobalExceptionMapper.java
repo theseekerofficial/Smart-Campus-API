@@ -1,0 +1,31 @@
+package com.smartcampus.exception;
+
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
+@Provider
+public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
+
+    private static final Logger LOGGER = Logger.getLogger(GlobalExceptionMapper.class.getName());
+
+    @Override
+    public Response toResponse(Throwable ex) {
+        LOGGER.severe("Unexpected error: " + ex.getMessage());
+
+        Map<String, String> error = new HashMap<>();
+        error.put("error", "Internal Server Error");
+        error.put("message", "An unexpected error occurred. Please try again later.");
+        error.put("status", "500");
+
+        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(error)
+                .type(MediaType.APPLICATION_JSON)
+                .build();
+    }
+}
