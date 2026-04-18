@@ -13,7 +13,8 @@ public class Main {
     public static final String BASE_URI = "http://localhost:8080/";
 
     public static void main(String[] args) throws Exception {
-        final ResourceConfig config = new ApplicationConfig();
+        final ResourceConfig config = ResourceConfig.forApplicationClass(ApplicationConfig.class);
+
         final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(
                 URI.create(BASE_URI), config, false
         );
