@@ -52,7 +52,9 @@ smart-campus-api/
 
 ### Prerequisites
 - Java 11 or higher
+- Apache Tomcat 9.x ([Download here](https://tomcat.apache.org/download-90.cgi))
 - Maven 3.6 or higher
+- NetBeans IDE (recommended)
 
 ### Steps
 
@@ -62,17 +64,32 @@ git clone https://github.com/theseekerofficial/Smart-Campus-API.git
 cd smart-campus-api
 ```
 
-**2. Build the project**
+**2. Add Tomcat 9 to your IDE**
+
+For NetBeans:
+- Go to Services tab → Right click Servers → Add Server
+- Select Apache Tomcat or TomEE
+- Browse to your extracted Tomcat 9 folder
+- Set a username and password and click Finish
+
+**3. Open the project**
+
+For NetBeans:
+- File → Open Project → select the cloned folder
+
+**4. Build the project**
 ```bash
 mvn clean package
 ```
+Or right click project → Clean and Build in your IDE
 
-**3. Run the server**
-```bash
-java -jar target/smart-campus-api-1.0-SNAPSHOT.jar
-```
+**5. Run the project**
 
-**4. The API will be available at**
+Right click project → Run
+
+Tomcat will start and deploy the application automatically.
+
+**6. The API will be available at**
 ```
 http://localhost:8080/api/v1
 ```
