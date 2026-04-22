@@ -96,6 +96,31 @@ http://localhost:8080/api/v1
 
 ---
 
+### Configure Base URL (Remove Context Path)
+
+By default, when deploying the application on Apache Tomcat, the context path is derived from the WAR file name (e.g., `smart-campus-api`). This results in URLs like:
+
+```
+http://localhost:8080/smart-campus-api/api/v1
+```
+
+To remove the `/smart-campus-api` segment and expose the API at the root context:
+
+#### Change Context Path in NetBeans
+
+* Right click the project → **Properties**
+* Navigate to **Run**
+* Delete anything in **Context Path**
+
+This will also make the API available at:
+
+```
+http://localhost:8080/api/v1
+```
+
+
+---
+
 ## API Endpoints
 
 | Method   | Endpoint                            | Description             |
