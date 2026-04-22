@@ -5,7 +5,7 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-@ApplicationPath("/api/v1")
+@ApplicationPath("/")
 public class ApplicationConfig extends Application {
 
     @Override
