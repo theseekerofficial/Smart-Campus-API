@@ -198,6 +198,8 @@ curl -X POST http://localhost:8080/api/v1/sensors/OCC-001/readings \
 
 > In this project, the shared state (rooms, sensors, readings) is controlled in the DataStore class, which is a singleton by a static final instance. This guarantees that instances of all classes of resources classes, including the number of instances created per request, will share the identical in-memory and completely eliminates race conditions when innumerable threads are reading and writing to a data structure at the same time,thread safeguards without blocking the synchronization.
 
+> The API base path /api/v1 is configured via the servlet URL mapping in web.xml, with @ApplicationPath("/") set on the Application class. This achieves the same result as using @ApplicationPath("/api/v1") directly, as the URL pattern in web.xml handles the base path routing to Jersey.
+
 **Q: Why is HATEOAS considered a hallmark of advanced RESTful design? How does it benefit client developers?**
 
 > HATEOAS (Hypermedia As The Engine Of Application State) is that the responses of the API do not contain bare data, instead, they contain links to other related resources and the actions that can be taken. This will enable the clients to use the API dynamically without coding of the URLs. An example of this would be a response to a room which would have a link to its sensors and a link to remove it. This has a number of benefits to client developers: it minimizes the degree of bonding between client and server, is self-documenting, and the server can modify URL structure without breaking clients provided the link relations do not change. HATEOAS provides the clients with a live map of what they can do next, depending on the book of the resource, rather than on static documentation.
