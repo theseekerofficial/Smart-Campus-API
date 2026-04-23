@@ -1,16 +1,16 @@
 # Smart Campus API
 
-A RESTful API for managing Rooms and Sensors across a university Smart Campus infrastructure, built with JAX-RS (Jersey), Grizzly HTTP Server, and Jackson for JSON serialization.
+A RESTful API for managing Rooms and Sensors across a university Smart Campus infrastructure, built with JAX-RS (Jersey), Tomcat, and Jackson for JSON serialization.
 
 ---
 
 ## Technology Stack
 
 - Java 11
-- JAX-RS (Jakarta RESTful Web Services)
-- Jersey 3.1.3 (JAX-RS Implementation)
-- Grizzly 4.0.0 (Embedded HTTP Server)
-- Jackson (JSON Serialization)
+- JAX-RS (javax.ws.rs)
+- Jersey 2.32 (JAX-RS Implementation)
+- Apache Tomcat 9.x (Servlet Container)
+- Jackson 2.32 (JSON Serialization)
 - Maven (Build Tool)
 
 ---
@@ -20,7 +20,6 @@ A RESTful API for managing Rooms and Sensors across a university Smart Campus in
 ```
 smart-campus-api/
 ├── src/main/java/com/smartcampus/
-│   ├── Main.java
 │   ├── ApplicationConfig.java
 │   ├── model/
 │   │   ├── Room.java
@@ -41,8 +40,10 @@ smart-campus-api/
 │   │   └── GlobalExceptionMapper.java
 │   ├── filter/
 │   │   └── LoggingFilter.java
-│   └── store/
-│       └── DataStore.java
+│   ├── store/
+│   │   └── DataStore.java
+│   └── WEB-INF/
+│      └── web.xml
 └── pom.xml
 ```
 
@@ -243,7 +244,7 @@ curl -X POST http://localhost:8080/api/v1/sensors/OCC-001/readings \
 
 **Q: What are the security risks of exposing internal Java stack traces to API consumers?**
 
->Several reasons make exposing raw stack traces to external clients a big security risk. First, in stack traces, the attackers get a map of what codebase by showing them the internal package structure and names of the classes to which the application belongs. Second, they can reveal names and versions of libraries (e.g., Jersey 3.1.3, Grizzly 4.0.0), which attackers can use to attempt to find known CVEs in those specific versions. Third, stack trace could include file paths and directory structures to files on servers, which helps in targeted attacks. Fourth, traces may be leaked via error messages containing fragments of database queries, value of variables or business logic. The API accomplishes this by providing a global instance of ExceptionMapper<Throwable> which would give a generic 500 response but be logged server side to aid in debugging.
+>Several reasons make exposing raw stack traces to external clients a big security risk. First, in stack traces, the attackers get a map of what codebase by showing them the internal package structure and names of the classes to which the application belongs. Second, they can reveal names and versions of libraries (e.g., Jersey 2.32, Tomcat 9), which attackers can use to attempt to find known CVEs in those specific versions. Third, stack trace could include file paths and directory structures to files on servers, which helps in targeted attacks. Fourth, traces may be leaked via error messages containing fragments of database queries, value of variables or business logic. The API accomplishes this by providing a global instance of ExceptionMapper<Throwable> which would give a generic 500 response but be logged server side to aid in debugging.
 
 **Q: Why use JAX-RS filters for logging instead of manual Logger.info() calls in every method?**
 
