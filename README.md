@@ -19,31 +19,35 @@ A RESTful API for managing Rooms and Sensors across a university Smart Campus in
 
 ```
 smart-campus-api/
-├── src/main/java/com/smartcampus/
-│   ├── ApplicationConfig.java
-│   ├── model/
-│   │   ├── Room.java
-│   │   ├── Sensor.java
-│   │   └── SensorReading.java
-│   ├── resource/
-│   │   ├── DiscoveryResource.java
-│   │   ├── RoomResource.java
-│   │   ├── SensorResource.java
-│   │   └── SensorReadingResource.java
-│   ├── exception/
-│   │   ├── RoomNotEmptyException.java
-│   │   ├── RoomNotEmptyExceptionMapper.java
-│   │   ├── LinkedResourceNotFoundException.java
-│   │   ├── LinkedResourceNotFoundExceptionMapper.java
-│   │   ├── SensorUnavailableException.java
-│   │   ├── SensorUnavailableExceptionMapper.java
-│   │   └── GlobalExceptionMapper.java
-│   ├── filter/
-│   │   └── LoggingFilter.java
-│   ├── store/
-│   │   └── DataStore.java
-│   └── WEB-INF/
-│      └── web.xml
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/smartcampus/
+│       │       ├── ApplicationConfig.java
+│       │       ├── model/
+│       │       │   ├── Room.java
+│       │       │   ├── Sensor.java
+│       │       │   └── SensorReading.java
+│       │       ├── resource/
+│       │       │   ├── DiscoveryResource.java
+│       │       │   ├── RoomResource.java
+│       │       │   ├── SensorResource.java
+│       │       │   └── SensorReadingResource.java
+│       │       ├── exception/
+│       │       │   ├── RoomNotEmptyException.java
+│       │       │   ├── RoomNotEmptyExceptionMapper.java
+│       │       │   ├── LinkedResourceNotFoundException.java
+│       │       │   ├── LinkedResourceNotFoundExceptionMapper.java
+│       │       │   ├── SensorUnavailableException.java
+│       │       │   ├── SensorUnavailableExceptionMapper.java
+│       │       │   └── GlobalExceptionMapper.java
+│       │       ├── filter/
+│       │       │   └── LoggingFilter.java
+│       │       └── store/
+│       │           └── DataStore.java
+│       └── webapp/
+│           └── WEB-INF/
+│               └── web.xml
 └── pom.xml
 ```
 
